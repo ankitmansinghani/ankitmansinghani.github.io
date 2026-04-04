@@ -1,118 +1,887 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Ankit I. Mansinghani</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  
-  
-  <style>
-    .floatLeft{
-      float: left;
-    }
-    .floatRight{
-      float:right;
-    }
-    p {
-      line-height: 1.0
-    }
-    body {
-        font: 16px Montserrat, sans-serif;
-        line-height: 1.8;
-        /*color: #f5f6f7;*/
-    }
-    li {
-      font: 14px Montserrat, sans-serif;
-      line-height: 1.8;
-    }
-    
-    img {
-      height: 70px;
-      margin: 5px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankit Mansinghani — Cloud Infrastructure Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c12;
+    --surface: #0f1620;
+    --surface2: #151f2e;
+    --border: #1a2740;
+    --border2: #233252;
+    --cyan: #00d4e8;
+    --cyan-dim: rgba(0,212,232,0.12);
+    --cyan-glow: rgba(0,212,232,0.06);
+    --amber: #f59e0b;
+    --text: #dde4f0;
+    --muted: #5a6e8a;
+    --muted2: #8da0b8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Radial glow at top */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(ellipse, rgba(0,212,232,0.07) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ——— NAV ——— */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(8,12,18,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--cyan);
+    letter-spacing: 0.06em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted2);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ——— HERO ——— */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 7rem 2.5rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-inner { max-width: 720px; }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #f0f4ff;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 span { color: var(--cyan); }
+
+  .hero-subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--muted2);
+    margin-bottom: 1.5rem;
+    min-height: 1.5em;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--cyan);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    color: var(--muted2);
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.65rem 1.4rem;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: #080c12;
+    font-weight: 500;
+  }
+
+  .btn-primary:hover {
+    background: #33dcee;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-glow);
+  }
+
+  /* ——— SECTION WRAPPER ——— */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: #f0f4ff;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ——— SKILLS ——— */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+
+  .skill-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .skill-card-title::before {
+    content: '//';
+    color: var(--muted);
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--muted2);
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-dim);
+  }
+
+  /* ——— EXPERIENCE ——— */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1px 1fr;
+    gap: 0 2rem;
+    position: relative;
+    padding-bottom: 3rem;
+  }
+
+  .exp-item:last-child { padding-bottom: 0; }
+
+  .exp-line {
+    width: 1px;
+    background: var(--border2);
+    position: relative;
+  }
+
+  .exp-line::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: -4px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
+  .exp-content { padding-top: 0; }
+
+  .exp-meta {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #f0f4ff;
+  }
+
+  .exp-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    padding: 2px 8px;
+    border: 1px solid var(--cyan-dim);
+    border-radius: 4px;
+    background: var(--cyan-dim);
+  }
+
+  .exp-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.93rem;
+    color: var(--muted2);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.65;
+  }
+
+  .exp-bullets li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--cyan);
+    font-size: 1rem;
+  }
+
+  /* ——— CERTS ——— */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.2s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--amber);
+    background: var(--surface2);
+  }
+
+  .cert-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    background: rgba(245,158,11,0.12);
+    border: 1px solid rgba(245,158,11,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .cert-info {}
+
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f0f4ff;
+    margin-bottom: 2px;
+  }
+
+  .cert-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--amber);
+  }
+
+  /* ——— STATS STRIP ——— */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.5rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat:hover { background: var(--surface2); }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--cyan);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+  }
+
+  /* ——— CONTACT ——— */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .contact-item:hover {
+    border-color: var(--cyan);
+    background: var(--surface2);
+  }
+
+  .contact-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--cyan-dim);
+    border: 1px solid rgba(0,212,232,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 16px; height: 16px; }
+
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    display: block;
+  }
+
+  .contact-value {
+    font-size: 13px;
+    color: var(--text);
+    display: block;
+  }
+
+  /* ——— FOOTER ——— */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  footer span { color: var(--cyan); }
+
+  /* ——— RESPONSIVE ——— */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { gap: 1.25rem; }
+    .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .exp-meta { flex-direction: column; gap: 0.3rem; }
+    .exp-period { margin-left: 0; }
+  }
+
+  /* ——— FADE-IN ANIMATION ——— */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: none;
+  }
+</style>
 </head>
 <body>
 
-<div class="container">
-  <img style="float: left; margin: 10px; height: 150px" src="2019_08.JPG">
-  <h2>Ankit I. Mansinghani</h2>
-  <p>ankitmansinghani21@gmail.com</p>
-  <p><a href="https://www.linkedin.com/in/ankki24/">LinkedIn </a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://auth.geeksforgeeks.org/user/ankitmansinghani21/practice/">GeeksForGeeks</a> </p>
-  <p>Developer @ Persistent Systems, Pune, IN </p>
-  <br>
-  <h3> About Me </h3>
-  <ul>
-    <li>Developer with 3 Years of experience in enterprise product development.</li>
-    <li>Comfortable with few programming languages like Java, C++, JavaScript, Python, GoLang. </li>
+<nav>
+  <a class="nav-logo" href="#">ankit.mansinghani</a>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#certifications">certs</a></li>
+    <li><a href="#contact">contact</a></li>
   </ul>
-  <h3>Project Details</h3>
-  <ul>
-      <li><div class="floatLeft">Email Analyser - Persistent Systems LTD.</div><div class="floatRight">Jul 2019 - Aug 2019</div></li>
-      <ul>
-      <li>Build model in <b>Python</b> with help of <b>Django</b> Framework to session management, data parsing and management.</li>
-      </ul>
-      <li><div class="floatLeft">AWS Data Migration - Persistent Systems LTD.</div><div class="floatRight">Apr 2019 - Jul 2019</div></li>
-      <ul>
-        <li>Created module in <b>Spring Boot</b> framework which is responsible to verify connection property for <b>AWS S3</b>.</li>       
-          <li>Created Module which uses <b>AWS SQS & DynamoDB</b> to Synchronize data across other different data sources. </li>
-        </ul>
-      <li><div class="floatLeft">IBM APM/ITM - Persistent Systems LTD.</div><div class="floatRight">Sep 2016 - Aug 2018 </div> </li>
-      <ul>
-        <li>Contributed by building more efficient modules with <b>C++</b> & <b>Java</b> for newer version of the IBM ITM product</li>
-        <li>Attended Client/Sales team calls to improve quality of features more effectively.</li>
-        <li>Build <b>DOJO</b>(A Javascript Framework) based UI which have responsive capabilities for the user dashboard to coustomize views. </li>
-        </ul>
-      <li><div class="floatLeft">Crowd funding (Blockchain POC) - Persistent Systems LTD.</div><div class="floatRight">Sep 2016 - Dec 2016</div></li>
-      <ul>
-        <li>Created offline n/w <b>Ethereum</b> chain with dummy miners to satisfy scenario which we have taken for the POC. </li>
-        </ul>
-      <li><div class="floatLeft">TV show downloader - Academic Project</div><div class="floatRight">Sep 2015 - Mar 2016</div></li>
-      <ul>
-        <li>Built CLI tool with <b>ShellScript</b> to browse the current available TV Show torrents.</li> 
-          <li>Provided scheduling capabilities over manual downloads with help of <b>C++</b> and <b>Python</b>.</li>
-        </ul>
-      <li><div class="floatLeft">Linux System Monitor - Academic Project</div><div class="floatRight">Mar 2015 - Aug 2015</div></li>
-      <ul>
-        <li>Built GUI with <b>QTC++</b> to give access to new linux user to check activity logs outside of the terminal.</li>
-        <li>UI provides easy access which helps user to check important logs like system start/stop, N/W connect/disconnect, USB port usage, Bluetooth/Wifi usage etc.</li>
-        </ul>
-      <!--<li>Genesis Hackathon 2018- HashRight (Blockchain POC)</li>-->
-  </ul>
-  <h3>Skill Set</h3>
-  <ul>
-    <li><div class="floatLeft">Programming languages&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</div> Core Java,&nbsp;C++,&nbsp;Python,&nbsp;GoLang</li>
-    <li><div class="floatLeft">Technology/Framework&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;  </div>IBM Stack,&nbsp;DOJO,&nbsp;AWS,&nbsp;Spring Boot,&nbsp;Django,&nbsp;RESTFul</li>
-    <li><div class="floatLeft">Certification&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</div> Currently pursuing AWS Certified developer associate Certification</li>
-  </ul>
-  <h3>Research Interests</h3>
-  <ul>
-    <li>Algorithms</li>
-    <li>CS education</li>
-  </ul>
-  <h3>Awards</h3>
-  <ul>
-    <li><a href="https://www.hackerearth.com/challenges/hackathon/genesis-hack-2019/">Finalist of Genesis Hackthon 2019 (Top 36 from 4000+ teams)</a></li>
-    <li>Bravo Individual badge for contribution to ISM Configuration Panel Development - Persistent Systems LTD.</li>
-    <li>High Five team badge for contributing in ISM Agent. - Persistent Systems LTD.</li>
-    <li>Bravo Individual badge for contribution to IBM BU Hackathon. - Persistent Systems LTD.</li>
-    <li>High Five individual contribution to Biz-talk agent development. - Persistent Systems LTD.</li>
-    </ul>
-  <h3>Education</h3>
-  <ul>
-  <li>B.E : LDRP Institute of Technology & Research,Gujarat,India : GPA: 7.1/10</li>
-  <li>Shree Vidhyanagar High School (Ahmedabad) - Science</li>
-    <ul>
-      <li>10th Std. (S.S.C) - 89.23% </li>
-      <li>12th Std  (H.S.C)-  83.53%</li>
-    </ul>
-  </ul>
+</nav>
 
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">available for roles · Abu Dhabi &amp; beyond</div>
+    <h1>Ankit<br><span>Mansinghani</span></h1>
+    <p class="hero-subtitle"><span id="typed"></span><span class="cursor"></span></p>
+    <p class="hero-desc">
+      Cloud Infrastructure Architect with 9+ years designing large-scale Kubernetes platforms,
+      BGP/EVPN fabric networks, and bare-metal automation — bridging datacenter networking depth
+      directly to cloud-native infrastructure at scale.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:ankitmansinghani21@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Get in touch
+      </a>
+      <a class="btn btn-ghost" href="#experience">View experience →</a>
+    </div>
+  </div>
 </div>
 
+<!-- ABOUT / STATS -->
+<section id="about">
+  <div class="section-label">$ whoami</div>
+  <div class="section-title">At a glance</div>
+
+  <div class="stats fade-in">
+    <div class="stat">
+      <span class="stat-num">9+</span>
+      <div class="stat-label">years experience</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">100+</span>
+      <div class="stat-label">servers automated</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <div class="stat-label">certifications</div>
+    </div>
+    <div class="stat">
+      <span class="stat-num">3</span>
+      <div class="stat-label">continents deployed</div>
+    </div>
+  </div>
+
+  <p style="color: var(--muted2); max-width: 740px; font-size: 1rem; line-height: 1.85;" class="fade-in">
+    Based in India, open to relocation. I specialise in the intersection of bare-metal infrastructure and cloud-native orchestration —
+    whether that's designing BGP EVPN/VXLAN fabrics on SONiC &amp; Cumulus Linux, operating self-managed Kubernetes clusters for
+    AI/ML workloads, or engineering Redfish-driven provisioning automation for 100+ server fleets. Internationally deployed for
+    enterprise data-center build-outs in Bangkok and IBM Research Triangle Park, USA.
+  </p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">$ cat skills.yaml</div>
+  <div class="section-title">Core competencies</div>
+
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Cloud Platforms</div>
+      <div class="tags">
+        <span class="tag">AWS EKS</span>
+        <span class="tag">EC2</span>
+        <span class="tag">VPC</span>
+        <span class="tag">IAM</span>
+        <span class="tag">Transit Gateway</span>
+        <span class="tag">Direct Connect</span>
+        <span class="tag">CloudFormation</span>
+        <span class="tag">Azure</span>
+        <span class="tag">OpenShift</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Kubernetes &amp; Orchestration</div>
+      <div class="tags">
+        <span class="tag">EKS</span>
+        <span class="tag">Self-managed K8s</span>
+        <span class="tag">Operators / CRDs</span>
+        <span class="tag">RBAC</span>
+        <span class="tag">Helm</span>
+        <span class="tag">DaemonSets</span>
+        <span class="tag">Network Policy</span>
+        <span class="tag">GPU Operator</span>
+        <span class="tag">Calico CNI</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Network Architecture</div>
+      <div class="tags">
+        <span class="tag">BGP EVPN/VXLAN</span>
+        <span class="tag">SONiC</span>
+        <span class="tag">Cumulus Linux</span>
+        <span class="tag">SR Linux</span>
+        <span class="tag">MCLAG/ISL</span>
+        <span class="tag">L2/L3 Routing</span>
+        <span class="tag">Mellanox</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Infrastructure as Code</div>
+      <div class="tags">
+        <span class="tag">Terraform</span>
+        <span class="tag">CloudFormation</span>
+        <span class="tag">Ansible</span>
+        <span class="tag">Python</span>
+        <span class="tag">Redfish APIs</span>
+        <span class="tag">Bash</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">CI/CD &amp; DevSecOps</div>
+      <div class="tags">
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">Jenkins</span>
+        <span class="tag">GitOps</span>
+        <span class="tag">Security gates</span>
+        <span class="tag">Compliance-as-Code</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-card-title">Bare-Metal &amp; Hardware</div>
+      <div class="tags">
+        <span class="tag">Lenovo SD530/SR650</span>
+        <span class="tag">Dell servers</span>
+        <span class="tag">BMC/IPMI</span>
+        <span class="tag">Firmware lifecycle</span>
+        <span class="tag">Rack wiring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">$ git log --oneline</div>
+  <div class="section-title">Experience</div>
+
+  <div class="timeline">
+    <div class="exp-item fade-in">
+      <div class="exp-line"></div>
+      <div class="exp-content">
+        <div class="exp-meta">
+          <span class="exp-role">Cloud Infrastructure Architect</span>
+          <span class="exp-company">Persistent Systems</span>
+          <span class="exp-period">Sep 2016 – Present · 9+ yrs</span>
+        </div>
+        <ul class="exp-bullets">
+          <li>Architected AWS multi-account landing zones using Control Tower and SCPs — security guardrails, VPC segmentation, and network topology standards across dev/staging/prod.</li>
+          <li>Designed and operated BGP EVPN/VXLAN overlay fabrics on SONiC and Cumulus Linux (Mellanox hardware), providing multi-tenant L2/L3 isolation across bare-metal and cloud-connected clusters.</li>
+          <li>Built and operated production Kubernetes clusters (EKS &amp; self-managed) — RBAC, resource quotas, auto-scaling, namespace governance. Managed Netezza Performance Server lifecycle via Kubernetes Operators across AWS, Azure, and OpenShift.</li>
+          <li>Engineered Python/Redfish automation suites to provision and configure 100+ enterprise servers end-to-end, cutting provisioning time by 60% and eliminating manual errors.</li>
+          <li>Designed end-to-end CI/CD pipelines (Jenkins + GitHub Actions) with embedded security gates, compliance checks, and automated testing enabling GitOps delivery across multi-cloud.</li>
+          <li>Deployed high-availability MCLAG/ISL active-active network fabrics with PortChannel aggregation, providing sub-second failover and zero-downtime maintenance windows.</li>
+          <li>International on-site deployments: Bangkok, Thailand (20+ rack IBM Netezza enterprise deployments across 2 DC sites) and IBM Research Triangle Park, USA.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">$ ls certs/</div>
+  <div class="section-title">Certifications</div>
+
+  <div class="certs-grid">
+    <div class="cert-card fade-in">
+      <div class="cert-icon">☁</div>
+      <div class="cert-info">
+        <div class="cert-name">AWS Certified Solutions Architect</div>
+        <div class="cert-year">Associate · 2025</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">⎈</div>
+      <div class="cert-info">
+        <div class="cert-name">Certified Kubernetes Administrator</div>
+        <div class="cert-year">CKA · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card fade-in">
+      <div class="cert-icon">◈</div>
+      <div class="cert-info">
+        <div class="cert-name">Kubernetes &amp; Cloud Native Associate</div>
+        <div class="cert-year">KCNA · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">$ ping ankit</div>
+  <div class="section-title">Get in touch</div>
+
+  <div class="contact-grid fade-in">
+    <a class="contact-item" href="mailto:ankitmansinghani21@gmail.com">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">email</span>
+        <span class="contact-value">ankitmansinghani21@gmail.com</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="tel:+918866123530">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">phone</span>
+        <span class="contact-value">+91 88661 23530</span>
+      </div>
+    </a>
+
+    <a class="contact-item" href="https://linkedin.com/in/ankit-mansinghani" target="_blank" rel="noopener">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">linkedin</span>
+        <span class="contact-value">ankit-mansinghani</span>
+      </div>
+    </a>
+
+    <div class="contact-item" style="cursor:default;">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+      </div>
+      <div>
+        <span class="contact-label">location</span>
+        <span class="contact-value">Ahmedabad, India · Open to relocation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built with intention · <span>ankit mansinghani</span> · &copy; 2025
+</footer>
+
+<script>
+  /* ——— TYPING ANIMATION ——— */
+  const phrases = [
+    'Cloud Infrastructure Architect',
+    'CKA · AWS-SAA · KCNA',
+    'Kubernetes + BGP fabric specialist',
+    'bare-metal · SONiC · EVPN/VXLAN',
+  ];
+
+  let pi = 0, ci = 0, deleting = false;
+  const el = document.getElementById('typed');
+
+  function type() {
+    const word = phrases[pi];
+    if (!deleting) {
+      el.textContent = word.slice(0, ci + 1);
+      ci++;
+      if (ci === word.length) {
+        deleting = true;
+        setTimeout(type, 2000);
+        return;
+      }
+    } else {
+      el.textContent = word.slice(0, ci - 1);
+      ci--;
+      if (ci === 0) {
+        deleting = false;
+        pi = (pi + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, deleting ? 40 : 65);
+  }
+  type();
+
+  /* ——— SCROLL FADE-IN ——— */
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
