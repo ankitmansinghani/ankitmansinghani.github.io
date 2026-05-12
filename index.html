@@ -20,6 +20,29 @@
     --text: #dde4f0;
     --muted: #5a6e8a;
     --muted2: #8da0b8;
+    --heading: #f0f4ff;
+    --nav-bg: rgba(8,12,18,0.85);
+    --grid-opacity: 0.35;
+    --glow-color: rgba(0,212,232,0.07);
+  }
+
+  html[data-theme="light"] {
+    --bg: #f0f4f8;
+    --surface: #ffffff;
+    --surface2: #e8edf3;
+    --border: #d0d9e8;
+    --border2: #b8c5d6;
+    --cyan: #0284c7;
+    --cyan-dim: rgba(2,132,199,0.1);
+    --cyan-glow: rgba(2,132,199,0.05);
+    --amber: #d97706;
+    --text: #1e293b;
+    --muted: #64748b;
+    --muted2: #475569;
+    --heading: #0f172a;
+    --nav-bg: rgba(240,244,248,0.92);
+    --grid-opacity: 0.18;
+    --glow-color: rgba(2,132,199,0.06);
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,7 +67,7 @@
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
     background-size: 48px 48px;
-    opacity: 0.35;
+    opacity: var(--grid-opacity);
     pointer-events: none;
     z-index: 0;
   }
@@ -58,7 +81,7 @@
     transform: translateX(-50%);
     width: 800px;
     height: 600px;
-    background: radial-gradient(ellipse, rgba(0,212,232,0.07) 0%, transparent 70%);
+    background: radial-gradient(ellipse, var(--glow-color) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
   }
@@ -72,7 +95,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2.5rem;
-    background: rgba(8,12,18,0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
@@ -101,6 +124,29 @@
   }
 
   .nav-links a:hover { color: var(--cyan); }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--border2);
+    border-radius: 6px;
+    width: 34px; height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--muted2);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    flex-shrink: 0;
+    margin-left: 1rem;
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    background: var(--cyan-glow);
+  }
+
+  .theme-toggle svg { width: 16px; height: 16px; }
 
   /* ——— HERO ——— */
   .hero {
@@ -148,7 +194,7 @@
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    color: #f0f4ff;
+    color: var(--heading);
     margin-bottom: 0.5rem;
   }
 
@@ -249,7 +295,7 @@
     font-family: 'Syne', sans-serif;
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 700;
-    color: #f0f4ff;
+    color: var(--heading);
     margin-bottom: 3rem;
     letter-spacing: -0.01em;
   }
@@ -357,7 +403,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 1.15rem;
     font-weight: 700;
-    color: #f0f4ff;
+    color: var(--heading);
   }
 
   .exp-company {
@@ -442,7 +488,7 @@
     font-family: 'Syne', sans-serif;
     font-size: 0.95rem;
     font-weight: 700;
-    color: #f0f4ff;
+    color: var(--heading);
     margin-bottom: 2px;
   }
 
@@ -588,6 +634,19 @@
     <li><a href="#certifications">certs</a></li>
     <li><a href="#contact">contact</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  </button>
 </nav>
 
 <div class="hero">
@@ -882,6 +941,29 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  /* ——— THEME TOGGLE ——— */
+  const moonSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>`;
+  const sunSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
+
+  const toggleBtn = document.getElementById('themeToggle');
+  const iconEl = document.getElementById('themeIcon');
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    toggleBtn.innerHTML = theme === 'light' ? moonSVG : sunSVG;
+    toggleBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+  }
+
+  const saved = localStorage.getItem('theme');
+  const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  applyTheme(saved || preferred);
+
+  toggleBtn.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
 </script>
 </body>
 </html>
