@@ -5,44 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ankit Mansinghani — Cloud Infrastructure Architect</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080c12;
-    --surface: #0f1620;
-    --surface2: #151f2e;
-    --border: #1a2740;
-    --border2: #233252;
-    --cyan: #00d4e8;
-    --cyan-dim: rgba(0,212,232,0.12);
-    --cyan-glow: rgba(0,212,232,0.06);
-    --amber: #f59e0b;
-    --text: #dde4f0;
-    --muted: #5a6e8a;
-    --muted2: #8da0b8;
-    --heading: #f0f4ff;
-    --nav-bg: rgba(8,12,18,0.85);
-    --grid-opacity: 0.35;
-    --glow-color: rgba(0,212,232,0.07);
+    --bg: #FAFAF8;
+    --surface: #FFFFFF;
+    --surface2: #F3F2EF;
+    --border: #E5E2DB;
+    --border2: #D0CCC3;
+    --accent: #C8532A;
+    --accent-dim: rgba(200, 83, 42, 0.08);
+    --accent-hover: #B04A24;
+    --text: #2C2A27;
+    --muted: #9A9590;
+    --muted2: #6B6760;
+    --heading: #0F0D0B;
+    --nav-bg: rgba(250, 250, 248, 0.92);
+    --tag-bg: #F0EDE8;
+    --tag-border: #E0DDD6;
   }
 
-  html[data-theme="light"] {
-    --bg: #f0f4f8;
-    --surface: #ffffff;
-    --surface2: #e8edf3;
-    --border: #d0d9e8;
-    --border2: #b8c5d6;
-    --cyan: #0284c7;
-    --cyan-dim: rgba(2,132,199,0.1);
-    --cyan-glow: rgba(2,132,199,0.05);
-    --amber: #d97706;
-    --text: #1e293b;
-    --muted: #64748b;
-    --muted2: #475569;
-    --heading: #0f172a;
-    --nav-bg: rgba(240,244,248,0.92);
-    --grid-opacity: 0.18;
-    --glow-color: rgba(2,132,199,0.06);
+  html[data-theme="dark"] {
+    --bg: #141210;
+    --surface: #1E1C1A;
+    --surface2: #252220;
+    --border: #2E2B28;
+    --border2: #3D3A36;
+    --accent: #D96B3F;
+    --accent-dim: rgba(217, 107, 63, 0.1);
+    --accent-hover: #E07D55;
+    --text: #D4D0C8;
+    --muted: #7A766E;
+    --muted2: #A09B93;
+    --heading: #F0EDE6;
+    --nav-bg: rgba(20, 18, 16, 0.92);
+    --tag-bg: #252220;
+    --tag-border: #3D3A36;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,38 +51,11 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
-  }
-
-  /* Grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 48px 48px;
-    opacity: var(--grid-opacity);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Radial glow at top */
-  body::after {
-    content: '';
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 600px;
-    background: radial-gradient(ellipse, var(--glow-color) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* ——— NAV ——— */
@@ -94,40 +66,46 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2.5rem;
+    padding: 0 2.5rem;
+    height: 60px;
     background: var(--nav-bg);
     backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
   }
 
   .nav-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: var(--cyan);
-    letter-spacing: 0.06em;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--heading);
+    letter-spacing: -0.01em;
     text-decoration: none;
   }
 
   .nav-links {
     display: flex;
-    gap: 2rem;
+    gap: 0.25rem;
     list-style: none;
   }
 
   .nav-links a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 13.5px;
+    font-weight: 450;
     color: var(--muted2);
     text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
   }
 
-  .nav-links a:hover { color: var(--cyan); }
+  .nav-links a:hover {
+    color: var(--heading);
+    background: var(--surface2);
+  }
 
   .theme-toggle {
     background: none;
-    border: 1px solid var(--border2);
+    border: 1px solid var(--border);
     border-radius: 6px;
     width: 34px; height: 34px;
     display: flex;
@@ -135,85 +113,88 @@
     justify-content: center;
     cursor: pointer;
     color: var(--muted2);
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
     flex-shrink: 0;
-    margin-left: 1rem;
+    margin-left: 0.75rem;
   }
 
   .theme-toggle:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-glow);
+    border-color: var(--border2);
+    color: var(--heading);
+    background: var(--surface2);
   }
 
-  .theme-toggle svg { width: 16px; height: 16px; }
+  .theme-toggle svg { width: 15px; height: 15px; }
 
   /* ——— HERO ——— */
   .hero {
-    position: relative;
-    z-index: 1;
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 7rem 2.5rem 4rem;
+    padding: 7rem 2.5rem 5rem;
     max-width: 1100px;
     margin: 0 auto;
   }
 
-  .hero-inner { max-width: 720px; }
+  .hero-inner { max-width: 680px; }
 
   .hero-tag {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--cyan);
-    letter-spacing: 0.1em;
+    gap: 7px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.01em;
     margin-bottom: 1.5rem;
+    background: var(--accent-dim);
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(200, 83, 42, 0.15);
   }
 
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 8px; height: 8px;
+  .hero-tag-dot {
+    width: 6px; height: 6px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    animation: pulse 2s ease-in-out infinite;
+    background: var(--accent);
+    animation: pulse 2.5s ease-in-out infinite;
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
   }
 
   .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 5rem);
-    font-weight: 800;
-    line-height: 1.05;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.0;
     letter-spacing: -0.02em;
     color: var(--heading);
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
   }
 
-  .hero h1 span { color: var(--cyan); }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
 
   .hero-subtitle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    color: var(--muted2);
-    margin-bottom: 1.5rem;
+    font-size: 15px;
+    font-weight: 450;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
     min-height: 1.5em;
+    font-family: 'Inter', monospace;
   }
 
   .cursor {
     display: inline-block;
-    width: 2px;
-    height: 1em;
-    background: var(--cyan);
-    margin-left: 2px;
+    width: 1.5px;
+    height: 0.9em;
+    background: var(--accent);
+    margin-left: 1px;
     vertical-align: text-bottom;
     animation: blink 1s step-end infinite;
   }
@@ -226,56 +207,55 @@
   .hero-desc {
     font-size: 1.05rem;
     color: var(--muted2);
-    max-width: 600px;
+    max-width: 580px;
     margin-bottom: 2.5rem;
-    line-height: 1.75;
+    line-height: 1.8;
   }
 
   .hero-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 0.65rem 1.4rem;
-    border-radius: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    gap: 7px;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
     text-decoration: none;
-    transition: all 0.2s;
-    letter-spacing: 0.03em;
+    transition: all 0.15s;
+    letter-spacing: -0.01em;
   }
 
   .btn-primary {
-    background: var(--cyan);
-    color: #080c12;
-    font-weight: 500;
+    background: var(--accent);
+    color: #fff;
   }
 
   .btn-primary:hover {
-    background: #33dcee;
+    background: var(--accent-hover);
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(200, 83, 42, 0.25);
   }
 
   .btn-ghost {
     border: 1px solid var(--border2);
     color: var(--muted2);
+    background: var(--surface);
   }
 
   .btn-ghost:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-glow);
+    border-color: var(--border2);
+    color: var(--heading);
+    background: var(--surface2);
   }
 
   /* ——— SECTION WRAPPER ——— */
   section {
-    position: relative;
-    z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
     padding: 5rem 2.5rem;
@@ -283,81 +263,73 @@
   }
 
   .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--cyan);
-    letter-spacing: 0.15em;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
   }
 
   .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.4rem);
+    font-weight: 400;
     color: var(--heading);
     margin-bottom: 3rem;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   /* ——— SKILLS ——— */
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.25rem;
+    gap: 1rem;
   }
 
   .skill-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     padding: 1.4rem 1.5rem;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
   .skill-card:hover {
     border-color: var(--border2);
-    background: var(--surface2);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   }
 
   .skill-card-title {
-    font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
-    color: var(--cyan);
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     margin-bottom: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .skill-card-title::before {
-    content: '//';
-    color: var(--muted);
   }
 
   .tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
   }
 
   .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11.5px;
-    padding: 4px 10px;
-    border-radius: 4px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 450;
+    padding: 3px 9px;
+    border-radius: 5px;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
     color: var(--muted2);
-    transition: all 0.2s;
+    transition: color 0.15s, border-color 0.15s;
   }
 
   .tag:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-dim);
+    border-color: var(--border2);
+    color: var(--text);
   }
 
   /* ——— EXPERIENCE ——— */
@@ -365,8 +337,8 @@
 
   .exp-item {
     display: grid;
-    grid-template-columns: 1px 1fr;
-    gap: 0 2rem;
+    grid-template-columns: 20px 1fr;
+    gap: 0 1.75rem;
     position: relative;
     padding-bottom: 3rem;
   }
@@ -374,128 +346,84 @@
   .exp-item:last-child { padding-bottom: 0; }
 
   .exp-line {
-    width: 1px;
-    background: var(--border2);
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6px;
   }
 
-  .exp-line::before {
-    content: '';
-    position: absolute;
-    top: 6px; left: -4px;
+  .exp-dot {
     width: 9px; height: 9px;
     border-radius: 50%;
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-bottom: 6px;
   }
+
+  .exp-track {
+    width: 1px;
+    flex: 1;
+    background: var(--border);
+  }
+
+  .exp-item:last-child .exp-track { display: none; }
 
   .exp-content { padding-top: 0; }
 
   .exp-meta {
     display: flex;
     align-items: baseline;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
 
   .exp-role {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
+    font-size: 1.05rem;
+    font-weight: 600;
     color: var(--heading);
   }
 
   .exp-company {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--cyan);
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--accent);
     padding: 2px 8px;
-    border: 1px solid var(--cyan-dim);
-    border-radius: 4px;
-    background: var(--cyan-dim);
+    border-radius: 5px;
+    background: var(--accent-dim);
   }
 
   .exp-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--muted);
     margin-left: auto;
+    font-weight: 450;
   }
 
   .exp-bullets {
     list-style: none;
-    margin-top: 1rem;
+    margin-top: 0.85rem;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.55rem;
   }
 
   .exp-bullets li {
-    font-size: 0.93rem;
+    font-size: 0.925rem;
     color: var(--muted2);
-    padding-left: 1.2rem;
+    padding-left: 1.1rem;
     position: relative;
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
   .exp-bullets li::before {
-    content: '›';
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--cyan);
-    font-size: 1rem;
-  }
-
-  /* ——— CERTS ——— */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .cert-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    transition: all 0.2s;
-  }
-
-  .cert-card:hover {
-    border-color: var(--amber);
-    background: var(--surface2);
-  }
-
-  .cert-icon {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    background: rgba(245,158,11,0.12);
-    border: 1px solid rgba(245,158,11,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
-  }
-
-  .cert-info {}
-
-  .cert-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--heading);
-    margin-bottom: 2px;
-  }
-
-  .cert-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--amber);
+    top: 0.6em;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--border2);
   }
 
   /* ——— STATS STRIP ——— */
@@ -505,40 +433,92 @@
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
     margin-bottom: 3rem;
   }
 
   .stat {
     background: var(--surface);
-    padding: 1.5rem;
+    padding: 1.75rem 1.5rem;
     text-align: center;
-    transition: background 0.2s;
+    transition: background 0.15s;
   }
 
   .stat:hover { background: var(--surface2); }
 
   .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--cyan);
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 2.25rem;
+    font-weight: 400;
+    color: var(--heading);
     display: block;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
   }
 
   .stat-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 11.5px;
+    font-weight: 500;
     color: var(--muted);
-    letter-spacing: 0.06em;
-    margin-top: 4px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ——— CERTS ——— */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .cert-card:hover {
+    border-color: var(--border2);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+
+  .cert-icon {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(200, 83, 42, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 19px;
+  }
+
+  .cert-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--heading);
+    margin-bottom: 3px;
+    line-height: 1.35;
+  }
+
+  .cert-year {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
   }
 
   /* ——— CONTACT ——— */
   .contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 1rem;
   }
 
@@ -548,73 +528,79 @@
     gap: 12px;
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 1rem 1.25rem;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: border-color 0.15s, box-shadow 0.15s;
   }
 
   .contact-item:hover {
-    border-color: var(--cyan);
-    background: var(--surface2);
+    border-color: var(--border2);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
   }
 
   .contact-icon {
     width: 36px; height: 36px;
     border-radius: 8px;
-    background: var(--cyan-dim);
-    border: 1px solid rgba(0,212,232,0.2);
+    background: var(--accent-dim);
+    border: 1px solid rgba(200, 83, 42, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
   }
 
-  .contact-icon svg { width: 16px; height: 16px; }
+  .contact-icon svg { width: 15px; height: 15px; }
 
   .contact-label {
-    font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
+    font-weight: 600;
     color: var(--muted);
     letter-spacing: 0.05em;
+    text-transform: uppercase;
     display: block;
+    margin-bottom: 2px;
   }
 
   .contact-value {
     font-size: 13px;
+    font-weight: 450;
     color: var(--text);
     display: block;
   }
 
   /* ——— FOOTER ——— */
   footer {
-    position: relative;
-    z-index: 1;
     text-align: center;
     padding: 2rem;
     border-top: 1px solid var(--border);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--muted);
+    font-weight: 450;
   }
 
-  footer span { color: var(--cyan); }
+  footer strong {
+    color: var(--muted2);
+    font-weight: 500;
+  }
 
   /* ——— RESPONSIVE ——— */
   @media (max-width: 700px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { gap: 1.25rem; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 0; }
+    .nav-links a { padding: 0.35rem 0.5rem; font-size: 12.5px; }
     .hero, section { padding-left: 1.25rem; padding-right: 1.25rem; }
     .stats { grid-template-columns: repeat(2, 1fr); }
-    .exp-meta { flex-direction: column; gap: 0.3rem; }
+    .exp-meta { flex-direction: column; gap: 0.25rem; }
     .exp-period { margin-left: 0; }
+    .hero h1 { font-size: clamp(2.5rem, 10vw, 3.5rem); }
   }
 
   /* ——— FADE-IN ANIMATION ——— */
   .fade-in {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(16px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
   }
 
   .fade-in.visible {
@@ -626,13 +612,13 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">ankit.mansinghani</a>
+  <a class="nav-logo" href="#">Ankit Mansinghani</a>
   <ul class="nav-links">
-    <li><a href="#about">about</a></li>
-    <li><a href="#skills">skills</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#certifications">certs</a></li>
-    <li><a href="#contact">contact</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
   <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
     <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -651,8 +637,11 @@
 
 <div class="hero">
   <div class="hero-inner">
-    <div class="hero-tag">available for roles · Abu Dhabi &amp; beyond</div>
-    <h1>Ankit<br><span>Mansinghani</span></h1>
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      Available for roles &middot; Abu Dhabi &amp; beyond
+    </div>
+    <h1>Ankit<br><em>Mansinghani</em></h1>
     <p class="hero-subtitle"><span id="typed"></span><span class="cursor"></span></p>
     <p class="hero-desc">
       Cloud Infrastructure Architect with 9+ years designing large-scale Kubernetes platforms,
@@ -671,7 +660,7 @@
 
 <!-- ABOUT / STATS -->
 <section id="about">
-  <div class="section-label">$ whoami</div>
+  <div class="section-label">About</div>
   <div class="section-title">At a glance</div>
 
   <div class="stats fade-in">
@@ -703,7 +692,7 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">$ cat skills.yaml</div>
+  <div class="section-label">Skills</div>
   <div class="section-title">Core competencies</div>
 
   <div class="skills-grid">
@@ -788,17 +777,20 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">$ git log --oneline</div>
-  <div class="section-title">Experience</div>
+  <div class="section-label">Experience</div>
+  <div class="section-title">Work history</div>
 
   <div class="timeline">
     <div class="exp-item fade-in">
-      <div class="exp-line"></div>
+      <div class="exp-line">
+        <div class="exp-dot"></div>
+        <div class="exp-track"></div>
+      </div>
       <div class="exp-content">
         <div class="exp-meta">
           <span class="exp-role">Cloud Infrastructure Architect</span>
           <span class="exp-company">Persistent Systems</span>
-          <span class="exp-period">Sep 2016 – Present · 9+ yrs</span>
+          <span class="exp-period">Sep 2016 – Present &middot; 9+ yrs</span>
         </div>
         <ul class="exp-bullets">
           <li>Architected AWS multi-account landing zones using Control Tower and SCPs — security guardrails, VPC segmentation, and network topology standards across dev/staging/prod.</li>
@@ -816,29 +808,29 @@
 
 <!-- CERTIFICATIONS -->
 <section id="certifications">
-  <div class="section-label">$ ls certs/</div>
-  <div class="section-title">Certifications</div>
+  <div class="section-label">Certifications</div>
+  <div class="section-title">Credentials</div>
 
   <div class="certs-grid">
     <div class="cert-card fade-in">
       <div class="cert-icon">☁</div>
       <div class="cert-info">
         <div class="cert-name">AWS Certified Solutions Architect</div>
-        <div class="cert-year">Associate · 2025</div>
+        <div class="cert-year">Associate &middot; 2025</div>
       </div>
     </div>
     <div class="cert-card fade-in">
       <div class="cert-icon">⎈</div>
       <div class="cert-info">
         <div class="cert-name">Certified Kubernetes Administrator</div>
-        <div class="cert-year">CKA · 2024</div>
+        <div class="cert-year">CKA &middot; 2024</div>
       </div>
     </div>
     <div class="cert-card fade-in">
       <div class="cert-icon">◈</div>
       <div class="cert-info">
         <div class="cert-name">Kubernetes &amp; Cloud Native Associate</div>
-        <div class="cert-year">KCNA · 2024</div>
+        <div class="cert-year">KCNA &middot; 2024</div>
       </div>
     </div>
   </div>
@@ -846,54 +838,54 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label">$ ping ankit</div>
+  <div class="section-label">Contact</div>
   <div class="section-title">Get in touch</div>
 
   <div class="contact-grid fade-in">
     <a class="contact-item" href="mailto:ankitmansinghani21@gmail.com">
       <div class="contact-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       </div>
       <div>
-        <span class="contact-label">email</span>
+        <span class="contact-label">Email</span>
         <span class="contact-value">ankitmansinghani21@gmail.com</span>
       </div>
     </a>
 
     <a class="contact-item" href="tel:+918866123530">
       <div class="contact-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.43 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
       <div>
-        <span class="contact-label">phone</span>
+        <span class="contact-label">Phone</span>
         <span class="contact-value">+91 88661 23530</span>
       </div>
     </a>
 
     <a class="contact-item" href="https://linkedin.com/in/ankit-mansinghani" target="_blank" rel="noopener">
       <div class="contact-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
       </div>
       <div>
-        <span class="contact-label">linkedin</span>
+        <span class="contact-label">LinkedIn</span>
         <span class="contact-value">ankit-mansinghani</span>
       </div>
     </a>
 
     <div class="contact-item" style="cursor:default;">
       <div class="contact-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
       </div>
       <div>
-        <span class="contact-label">location</span>
-        <span class="contact-value">Ahmedabad, India · Open to relocation</span>
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Ahmedabad, India &middot; Open to relocation</span>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  built with intention · <span>ankit mansinghani</span> · &copy; 2025
+  Built with intention &middot; <strong>Ankit Mansinghani</strong> &middot; &copy; 2025
 </footer>
 
 <script>
@@ -938,7 +930,7 @@
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
@@ -947,22 +939,21 @@
   const sunSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`;
 
   const toggleBtn = document.getElementById('themeToggle');
-  const iconEl = document.getElementById('themeIcon');
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    toggleBtn.innerHTML = theme === 'light' ? moonSVG : sunSVG;
-    toggleBtn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    toggleBtn.innerHTML = theme === 'dark' ? moonSVG : sunSVG;
+    toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 
   const saved = localStorage.getItem('theme');
-  const preferred = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   applyTheme(saved || preferred);
 
   toggleBtn.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
-    applyTheme(current === 'light' ? 'dark' : 'light');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
   });
 </script>
 </body>
